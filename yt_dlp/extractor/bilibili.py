@@ -369,8 +369,8 @@ class BilibiliBaseIE(InfoExtractor):
 
 
 class BiliBiliIE(BilibiliBaseIE):
-    _VALID_URL = r'https?://(?:www\.)?bilibili\.com/(?:video/|festival/[^/?#]+\?(?:[^#]*&)?bvid=)(?P<prefix>[aAbB][vV])(?P<id>[^/?#&]+)'
-
+    _VALID_URL = r'https?://(?:www\.)?bilibili\.com/(?:zh-[a-zA-Z]+/)?(?:video/|festival/[^/?#]+\?(?:[^#]*&)?bvid=)(?P<prefix>[aAbB][vV])(?P<id>[^/?#&]+)'
+    
     _TESTS = [{
         'url': 'https://www.bilibili.com/video/BV13x41117TL',
         'info_dict': {
@@ -717,6 +717,12 @@ class BiliBiliIE(BilibiliBaseIE):
     }, {
         'note': 'has - in the last path segment of the url',
         'url': 'https://www.bilibili.com/festival/bh3-7th?bvid=BV1tr4y1f7p2&',
+        'only_matching': True,
+    }, {
+        'url': 'https://www.bilibili.com/zh-Hans/video/BV1YV4y1e7XL/?spm_id_from=333.1391.0.0&vd_source=006a9bd99fe72b12445fae361608b163',
+        'only_matching': True,
+    }, {
+        'url': 'https://www.bilibili.com/zh-Hant/video/BV1YV4y1e7XL/',
         'only_matching': True,
     }]
 

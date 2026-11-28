@@ -384,7 +384,7 @@ class ARDMediathekCollectionIE(InfoExtractor):
     _VALID_URL = r'''(?x)https?://
         (?:(?:beta|www)\.)?ardmediathek\.de/
         (?:[^/?#]+/)?
-        (?P<playlist>sendung|serie|sammlung)/
+        (?P<playlist>sendung|serie|sammlung|film)/
         (?:(?P<display_id>[^?#]+?)/)?
         (?P<id>[a-zA-Z0-9]+)
         (?:/(?P<season>\d+)(?:/(?P<version>OV|AD))?)?/?(?:[?#]|$)'''
@@ -442,6 +442,10 @@ class ARDMediathekCollectionIE(InfoExtractor):
     }, {
         # playlist of type 'sammlung'
         'url': 'https://www.ardmediathek.de/ard/sammlung/team-muenster/5JpTzLSbWUAK8184IOvEir/',
+        'only_matching': True,
+    }, {
+        # playlist of type 'film'
+        'url': 'https://www.ardmediathek.de/film/der-talentierte-mr-f/Y3JpZDovL21kci5kZS9zZW5kZXJlaWhlbi8yYjcwOGU3OC04YWNjLTQ4OWEtOThiNy00NmVjNGRhMTQxMzAvcHJvZ3JhbS01MzMxMzYtNTA3ODU5',
         'only_matching': True,
     }]
 

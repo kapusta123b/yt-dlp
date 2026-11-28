@@ -387,6 +387,24 @@ class VKIE(VKBaseIE):
             'url': 'https://vksport.vkvideo.ru/video-124096712_456240773',
             'only_matching': True,
         },
+        {
+            'url': 'https://vkvideo.ru/video-24199209_456321193',
+            'info_dict': {
+                'id': '-24199209_456321193',
+                'title': 'Путин проводит переговоры с Трампом и Си Цзиньпином',
+                'ext': 'mp4',
+                'description': 'md5:ede78aeb9593f8530b99441dba3309e6',
+                'uploader': 'LIFE.ru',
+                'uploader_id': '-24199209',
+                'comment_count': int,
+                'like_count': int,
+                'duration': 661,
+                'thumbnail': r're:https?://.+\.jpg.*',
+                'timestamp': 1795077392,
+                'upload_date': '20261119',
+            },
+            'params': {'skip_download': True},
+        },
     ]
 
     def _real_extract(self, url):
@@ -556,8 +574,12 @@ class VKIE(VKBaseIE):
                 })
 
         for sub in data.get('subs') or {}:
-            subtitles.setdefault(sub.get('lang', 'en'), []).append({
-                'ext': sub.get('title', '.srt').split('.')[-1],
+            sub_title = sub.get('title', '.srt') or ''
+            ext = sub_title.split('.')[-1]
+
+            lang = sub.get('lang') or 'en'
+            subtitles.setdefault(lang, []).append({
+                'ext': ext or 'srt',
                 'url': url_or_none(sub.get('url')),
             })
 
